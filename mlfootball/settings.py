@@ -26,6 +26,15 @@ SECRET_KEY = ")@k0t+d=s)9psn48ifp2b$)8o7ocoq@zy(u6y_wz4#!sa2!arm"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SOCIAL_AUTH_FACEBOOK_KEY = '835038046651208'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '329f93f5c9cf1759be902e409cd3b724'  # App Secret
+SOCIAL_AUTH_LOGIN_ERROR_URL = 'settings/'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = 'settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'login'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -40,6 +49,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'news',
+    'bootstrap3',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'mlfootball.urls'
@@ -67,11 +79,21 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect', # <--
             ],
             'debug': DEBUG,
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 WSGI_APPLICATION = 'mlfootball.wsgi.application'
 
@@ -81,8 +103,12 @@ WSGI_APPLICATION = 'mlfootball.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6fo7d0arpmdn5',
+        'USER': 'etngacjuwxujon',
+        'PASSWORD': '21b6196955704bd41dec87908f73b6a97e7c6ea1509df3d3710d046b71c09c0a',
+        'HOST': 'ec2-54-247-120-169.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -123,12 +149,15 @@ ALLOWED_HOSTS = ['*']
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+MEDIA_URL = '/media/'
+
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_ROOT, 'static'),
 ]
 
 # Simplified static file serving.

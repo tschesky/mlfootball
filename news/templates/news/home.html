@@ -1,0 +1,55 @@
+{% extends 'news/base_sidebar.html' %}
+
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/g-aside-expand.js' %}"></script>
+
+{% block content %}
+		
+    <!-- Fluid Container -->
+    <div class="container-fluid g-aside-has-aside">
+    	<!-- Header with main buttons -->
+            <div class="row g-header">
+                <div class="col-sm-12">
+
+                    <!-- Screen Name -->
+                    <div class="pull-left g-navigation-text g-mobile-hide">
+                        <h4>What's this page's name?</h4>
+                    </div>
+
+                    <div class="pull-right "> 
+
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="">Some button</a>              
+                        </div>
+
+                        <!-- User Avatar / Profile -->
+                        <div class="btn-group">
+                            <div class="dropdown">
+
+                                <img class="g-header-avatar dropdown-toggle" src="{% static 'images/avatar.png' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                    <li>Pozycja 1</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>Pozycja 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+
+            <!-- Application Content -->
+            <div class="g-application-content">    
+                <!-- Card Row -->
+                <div class="row">
+                    <div class="col-md-12">            
+                    		XAXAXAX
+                    </div>
+                </div>  
+                <!-- / Card Row -->
+           </div>
+
+    </div>
+{% endblock %}
