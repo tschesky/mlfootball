@@ -8,4 +8,4 @@ pyparsing==2.2.0
 pytz==2017.2
 six==1.10.0
 whitenoise==3.3.0
-bootstrap3
+bootstrap3==8.2.3

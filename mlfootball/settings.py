@@ -31,7 +31,7 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '329f93f5c9cf1759be902e409cd3b724'  # App Secret
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/news/settings'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/news/settings'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
-
+LOGIN_URL = "login"
 
 # Application definition
 
