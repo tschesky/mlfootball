@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'news',
-    'bootstrap3',
     'social_django',
 ]
 
