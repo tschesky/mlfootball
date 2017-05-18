@@ -20,7 +20,7 @@ from django.contrib.auth import views as auth_views
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'news'
+LOGIN_REDIRECT_URL = 'index'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

@@ -52,10 +52,16 @@ def settings(request):
     except UserSocialAuth.DoesNotExist:
         facebook_login = None
 
+    try:
+        github_login = user.social_auth.get(provider='github')
+    except UserSocialAuth.DoesNotExist:
+        github_login = None
+
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
     return render(request, 'registration/settings.html', {
         'facebook_login': facebook_login,
+        'github_login': github_login,
         'can_disconnect': can_disconnect
     })
 
