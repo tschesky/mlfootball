@@ -8,7 +8,6 @@ from django.shortcuts import render, redirect
 
 from social_django.models import UserSocialAuth
 
-@login_required
 def index(request):
     template = loader.get_template('news/home.html')
     context = {
