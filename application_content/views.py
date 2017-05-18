@@ -18,6 +18,13 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+def profile(request):
+    template = loader.get_template('user_profile/profile.html')
+    context = {
+
+    }
+    return HttpResponse(template.render(context, request))    
+
 
 def login(request):
     template = loader.get_template('registration/login.html')
