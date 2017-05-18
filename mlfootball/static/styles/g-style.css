@@ -285,18 +285,18 @@ label {
   margin-bottom: 8px; }
 
 .g-table-card {
-  width: 100%;
-  border-spacing: 0 8px;
-  border-collapse: separate; }
+  width: 100% !important;
+  border-spacing: 0 8px !important;
+  border-collapse: separate !important; }
 
 .g-table-card tbody {
-  display: table-row-group;
-  vertical-align: middle; }
+  display: table-row-group !important;
+  vertical-align: middle !important; }
 .g-table-card td {
-  padding: 16px;
-  background-color: #fff; }
+  padding: 16px !important;
+  background-color: #fff !important; }
   .g-table-card td h4 {
-    margin: 0; }
+    margin: 0 !important; }
 
 .g-table-card-icon-td {
   width: 60px;
@@ -320,8 +320,8 @@ label {
     box-shadow: none !important; }
 
 .g-report-issue-card {
-  cursor: pointer;
-  border: #e6e6e6 1px solid; }
+  cursor: pointer !important;
+  border: #e6e6e6 1px solid !important; }
   .g-report-issue-card td {
     background: transparent; }
 
@@ -331,7 +331,7 @@ label {
 .g-report-issue-card-selected--green {
   border: #2ecc71 1px solid; }
   .g-report-issue-card-selected--green td {
-    background-color: #2ecc71; }
+    background-color: #2ecc71 !important; }
     .g-report-issue-card-selected--green td h4 {
       color: #fff; }
 

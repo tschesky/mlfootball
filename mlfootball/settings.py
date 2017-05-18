@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'news',
     'social_django',
+    'bootstrap3',
 ]
 
 MIDDLEWARE = [
