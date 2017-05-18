@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block content %}
-		
+
     <!-- Fluid Container -->
     <div class="container-fluid g-aside-has-aside">
     	<!-- Header with main buttons -->
@@ -19,7 +19,7 @@
 
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="">Log out</a>            
+                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
                         </div>
 
                         <!-- User Avatar / Profile -->
