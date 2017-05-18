@@ -2,6 +2,8 @@
 
 {% load static %}
 
+<link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
+
 {% block content %}
 		
     <!-- Fluid Container -->
@@ -71,7 +73,7 @@
                 <!-- Card Row -->
                 <div class="row">
                     <div class="col-md-12">            
-                    		<table class="g-table-card g-table-issues tablesorter mysortable" id="memo_table">
+                    		<table class="g-table-card" id="results_table">
                             <thead style="display: none">
                                 <tr>
                                     <th>Data</th> <th>Drużyna A</th>  <th>Drużyna B</th> <th>Home win</th>  <th>Draw</th> <th>Away win</th> <th>Score</th>
