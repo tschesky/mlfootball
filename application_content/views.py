@@ -20,7 +20,7 @@ def index(request):
 
 
 def login(request):
-    template = loader.get_template('news/login.html')
+    template = loader.get_template('registration/login.html')
     context = {
 
     }
@@ -29,7 +29,7 @@ def login(request):
 
 def logout_page(request):
     logout(request)
-    template = loader.get_template('news/login.html')
+    template = loader.get_template('registration/login.html')
     context = {
 
     }
@@ -66,7 +66,7 @@ def password(request):
             form.save()
             update_session_auth_hash(request, form.user)
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('news/settings')
+            return redirect('settings')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
