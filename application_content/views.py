@@ -12,7 +12,7 @@ from social_django.models import UserSocialAuth
 
 
 def index(request):
-    template = loader.get_template('news/home.html')
+    template = loader.get_template('home_page/index.html')
     context = {
 
     }
