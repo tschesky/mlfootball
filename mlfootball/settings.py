@@ -164,19 +164,11 @@ MEDIA_URL = '/media/'
 
 
 # Extra places for collectstatic to find static files.
-STATICFILES_DIRS = [
+STATICFILES_DIRS = [s
 ]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-import sys
-
-#if manage.py test was called, use test settings
-if 'test' in sys.argv:
-	try:
-		from test_settings import *
-	except ImportError:
-		pass
 
