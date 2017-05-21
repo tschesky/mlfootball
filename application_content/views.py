@@ -1,5 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
@@ -9,6 +10,8 @@ from django.contrib.auth import logout
 
 
 from social_django.models import UserSocialAuth
+
+from application_content.forms import RegistrationForm
 
 
 def index(request):
@@ -36,10 +39,18 @@ def login(request):
 
 def logout_page(request):
     logout(request)
-    template = loader.get_template('registration/login.html')
-    context = {
+    return HttpResponseRedirect("/login")
 
-    }
+
+def register_page(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect("/index")
+    else:
+        form = RegistrationForm()
+    template = loader.get_template("registration/register.html")
+    context = {'form': form}
     return HttpResponse(template.render(context, request))
 
 

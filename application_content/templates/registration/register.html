@@ -1,0 +1,16 @@
+<h2>Registration</h2>
+<div style="margin-left:35%;margin-right:35%;">
+    <fieldset>
+        <legend> Fill in all fields</legend>
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Registration">
+            <input type="reset" value="Initial values">
+        </form>
+    </fieldset>
+</div>
+
+<p>
+<div style="text-align:center;"><a href="/index">Go to main page.</a></div>
+</p>
