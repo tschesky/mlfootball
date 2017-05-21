@@ -109,7 +109,11 @@ DATABASES = {
         'HOST': 'ec2-54-247-120-169.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
 	'TEST': {
-            'ENGINE': 'django.db.backends.sqlite3',
+            	'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'test',
+        	'USER': 'admin',
+        	'PASSWORD': 'admin',
+        	'HOST': 'localhost',
         }
     }
 }
