@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
 <link rel="stylesheet" href="{% static 'styles/user-profile.css' %}">
 
-
 <script type="text/javascript" src="{% static 'js/jquery-3.2.1.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/user-profile.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/g-aside-expand.js' %}"></script>
 
 <html>
@@ -24,7 +24,7 @@
 
       <!-- Position one -->
       <div class="g-aside-menu-position">
-        <a class="g-aside-icon g-ripple-effect" href="">
+        <a class="g-aside-icon g-ripple-effect" href="/index">
           <img src="{% static 'images/home.png' %}"  alt="Day log">
         </a>
         <span class="btn btn-link">Home</span>    
@@ -32,7 +32,7 @@
 
       <!-- Position two -->
       <div class="g-aside-menu-position">
-        <a class="g-aside-icon g-ripple-effect" href="">
+        <a class="g-aside-icon g-ripple-effect" href="/profile">
             <img src="{% static 'images/user.png' %}"  alt="Day log">
         </a>
         <span class="btn btn-link">User profile</span>                
