@@ -8,6 +8,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 
 
+
+
 from social_django.models import UserSocialAuth
 
 
@@ -85,3 +87,33 @@ def password(request):
     else:
         form = PasswordForm(request.user)
     return render(request, 'registration/password.html', {'form': form})
+
+
+
+def news(request):
+    template = loader.get_template('news/news.html')
+    context = {'tweets': get_tweets()
+
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def get_tweets():
+    """internal function - not called from a URL"""
+    tweets = []
+    try:
+        import twitter
+        api = twitter.Api(consumer_key='vJGrMWYuGe9d9Wohxj6nFh0mv',
+                          consumer_secret='qzyER5Y0kuKmmnEJmuWy5PT5DHpoeJDsMWHpAxSFrlH0LbTt8t',
+                          access_token_key='866322307740028933-GogzPQhoHMrCDhSKnoev5GorTFmqi1h',
+                          access_token_secret='kSPEhATZzYYImWh2ZwwMOR3J0dtadxF4cSVDiVJ06Ty94')
+
+        latest =  api.GetUserTimeline(screen_name='mlfootball_test', exclude_replies=True, include_rts=False)
+        for tweet in latest:
+            status = tweet.text
+            #tweet_date = tweet.created_at
+            #tweets.append({'status': status, 'date': tweet_date})
+            tweets.append(status)
+    except:
+        tweets.append({'status': 'Follow football events'})
+    return tweets
