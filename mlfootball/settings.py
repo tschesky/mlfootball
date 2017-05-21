@@ -110,11 +110,11 @@ DATABASES = {
         'PORT': '5432',
 	'TEST': {
             	'ENGINE': 'django.db.backends.postgresql_psycopg2',
-		'NAME': 'test',
+		'HOST': 'localhost',
+		'PORT': '5432',
+		'NAME': 'django_test',
         	'USER': 'admin',
-        	'PASSWORD': 'admin',
-        	'HOST': 'localhost',
-		'PORT': '5432'
+        	'PASSWORD': 'admin'
         }
     }
 }
@@ -170,3 +170,13 @@ STATICFILES_DIRS = [
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import sys
+
+#if manage.py test was called, use test settings
+if 'test' in sys.argv:
+	try:
+		from test_settings import *
+	except ImportError:
+		pass
+
