@@ -5,6 +5,9 @@
     <input type="hidden" name="next" value="/index" />
     <button type="submit">Login</button>
   </form>
+    <form action="/register">
+        <input type="submit" value="Register" />
+    </form>
   <br>
   <p><strong>-- OR --</strong></p>
   <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
