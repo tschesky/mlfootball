@@ -103,11 +103,11 @@ WSGI_APPLICATION = 'mlfootball.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd6fo7d0arpmdn5',
-        'USER': 'etngacjuwxujon',
-        'PASSWORD': '21b6196955704bd41dec87908f73b6a97e7c6ea1509df3d3710d046b71c09c0a',
-        'HOST': 'ec2-54-247-120-169.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432'
+        'HOST': 'mlfootball.cnjq3hslbiwi.us-east-2.rds.amazonaws.com',
+        'PORT': '5432',
+        'NAME': 'mlfootball',
+        'USER': 'tschesky',
+        'PASSWORD': 'administrator'
     }
 }
 
