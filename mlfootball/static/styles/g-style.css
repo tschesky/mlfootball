@@ -929,3 +929,9 @@ label {
     display: none !important; } }
 
 /*# sourceMappingURL=g-style.css.map */
+.btn-round-lg{
+border-radius: 22.5px;
+}
+.btn-round{
+border-radius: 17px;
+}

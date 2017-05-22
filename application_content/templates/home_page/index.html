@@ -26,12 +26,12 @@
                         {% if user.is_authenticated %}
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'logout' %}">Log out</a>
                         </div>
                         {% else %}
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'login' %}">Log in</a>
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'login' %}">Log in</a>
                         </div>
                         {% endif %}
 
@@ -52,17 +52,13 @@
                 </div>
             </div>
 
-            <div class="row g-subnavigation">
+            <!-- <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
-
-                    <!-- All, Opened, Ready -->
                     <ul class="nav nav-pills pull-left" role="tablist">
                         <li class="showall active">   <a>Wszystkie <span class="badge g-badge-blue" id="all-number">10</span></a></li>
                         <li class="showopen">  <a>Rozegrane<span class="badge g-badge-red" id="open-number">5</span></a></li>
                         <li class="showready"> <a>Nierozegrane    <span class="badge g-badge-green" id="ready-number">5</span></a></li>
                     </ul>  
- 
-                    <!-- Sortowanie --> 
                     <div class="pull-right g-mobile-hide">
                         <div class="btn-group">
                             <div class="dropdown">
@@ -76,9 +72,8 @@
                             </div>
                         </div>
                     </div>
-                            
                 </div>  
-            </div>
+            </div> -->
 
             <!-- Application Content -->
             <div class="g-application-content">    
