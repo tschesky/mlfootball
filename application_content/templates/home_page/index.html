@@ -14,15 +14,27 @@
 
                     <!-- Screen Name -->
                     <div class="pull-left g-navigation-text g-mobile-hide">
+                        {% if user.is_authenticated %}
+                        <h4>Hello {{ user.first_name }}! We made some predictions for the upcoming week for you.</h4>
+                        {% else %}
                         <h4>Predictions for the upcoming week</h4>
+                        {%  endif %}
                     </div>
 
                     <div class="pull-right "> 
 
+                        {% if user.is_authenticated %}
                         <!-- Primary Action Button -->
                         <div class="btn-group">
                             <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
                         </div>
+                        {% else %}
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'login' %}">Log in</a>
+                        </div>
+                        {% endif %}
+
 
                         <!-- User Avatar / Profile -->
                         <div class="btn-group">
