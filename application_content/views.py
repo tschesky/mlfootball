@@ -111,9 +111,8 @@ def get_tweets():
         latest =  api.GetUserTimeline(screen_name='mlfootball_test', exclude_replies=True, include_rts=False)
         for tweet in latest:
             status = tweet.text
-            #tweet_date = tweet.created_at
-            #tweets.append({'status': status, 'date': tweet_date})
-            tweets.append(status)
+            tweet_date = tweet.created_at
+            tweets.append({'status': status, 'date': tweet_date})
     except:
-        tweets.append({'status': 'Follow football events'})
+        tweets.append({'status': 'Follow football events', 'date': 'just now2'})
     return tweets
