@@ -3,7 +3,7 @@
 {% load static %}
 
 <link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
-
+<link rel="stylesheet" href="{% static 'application_layouts/styles/twitter-news.css' %}">
 {% block content %}
 
     <!-- Fluid Container -->
@@ -52,8 +52,10 @@
                 </div>
             </div>
 
-            <!-- <div class="row g-subnavigation">
+            <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
+
+                  
                     <ul class="nav nav-pills pull-left" role="tablist">
                         <li class="showall active">   <a>Wszystkie <span class="badge g-badge-blue" id="all-number">10</span></a></li>
                         <li class="showopen">  <a>Rozegrane<span class="badge g-badge-red" id="open-number">5</span></a></li>

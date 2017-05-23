@@ -929,9 +929,51 @@ label {
     display: none !important; } }
 
 /*# sourceMappingURL=g-style.css.map */
+
+
 .btn-round-lg{
 border-radius: 22.5px;
 }
 .btn-round{
 border-radius: 17px;
 }
+
+
+
+/* styles for TWITTER NEWS site, should be moved to twitter-news.css */
+
+.timeline_window{
+    width:420px;
+    height:650px;
+    margin: 30px;
+    margin-left:100px;
+}
+
+.twitter-list-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+  height: 650px;
+}
+
+.twitter-buttons {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+}
+
+.twitter-buttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-top: 30px;
+  margin-right: 5px;
+}
+.twitter-content {
+  padding-left: 20px;
+  padding-right: 20px;
+  background: #fff;
+  height: 650px;
+}
+

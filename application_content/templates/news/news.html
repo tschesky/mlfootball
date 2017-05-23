@@ -1,0 +1,112 @@
+{% extends 'application_layouts/base_sidebar.html' %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
+<link rel="stylesheet" href="{% static 'styles/twitter-news.css' %}">
+<script type="text/javascript" src="{% static 'js/twitter-news.js' %}"></script>
+
+{% block content %}
+
+    <!-- Fluid Container -->
+    <div class="container-fluid g-aside-has-aside">
+    	<!-- Header with main buttons -->
+            <div class="row g-header">
+                <div class="col-sm-12">
+
+                    <!-- Screen Name -->
+                    <div class="pull-left g-navigation-text g-mobile-hide">
+                        <h4>Your personalized news</h4>
+                    </div>
+
+                    <div class="pull-right ">
+
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
+                        </div>
+
+                        <!-- User Avatar / Profile -->
+                        <div class="btn-group">
+                            <div class="dropdown">
+
+                                <img class="g-header-avatar dropdown-toggle" src="{% static 'images/avatar.png' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                    <li>Pozycja 1</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>Pozycja 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Application Content -->
+            <div class="g-application-content">
+                <!-- Card Row -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="container">
+                            <div class="row profile">
+                                <div class="col-md-3">
+                                    <div class="twitter-list-sidebar">
+                                        <!-- SIDEBAR USERPIC -->
+
+                                        <div class="profile-usermenu">
+                                            <ul class="nav">
+                                                <li class="active" id="realmadrid">
+                                                    <a href="#" onclick="return false;">
+                                                    realmadrid </a>
+                                                </li>
+                                                <li  id="mlfootball_test">
+                                                    <a href="#" onclick="return false;">
+                                                    mlfootball_test </a>
+                                                </li>
+                                                <li id="help">
+                                                    <a href="#" onclick="return false;">
+                                                    laczynaspilka </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="twitter-buttons">
+                                            <button type="button" class="btn btn-success btn-sm">Add new</button>
+                                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="twitter-content" id="realmadrid_content">
+                                        <a class="twitter-timeline" data-height="650" data-theme="light"
+                                           href="https://twitter.com/realmadrid"></a>
+                                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                    </div>
+
+                                    <div class="twitter-content" id="mlfootball_test_content" style="display: none">
+                                        <p> Hello! </p>
+                                       <a class="twitter-timeline" data-height="650" data-theme="light"
+                                           href="https://twitter.com/mlfootball_test"></a>
+                                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                    </div>
+
+                                    <div class="twitter-content" id="laczynaspilka_content" style="display: none">
+                                        <p> Hello! </p>
+                                       <a class="twitter-timeline" data-height="650" data-theme="light"
+                                           href="https://twitter.com/laczynaspilka"></a>
+                                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- / Card Row -->
+           </div>
+
+    </div>
+{% endblock %}
