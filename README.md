@@ -1,3 +1,5 @@
+https://travis-ci.org/tschesky/mlfootball.svg?branch=master
+
 # Used software
 
 python - version 2.7.12
