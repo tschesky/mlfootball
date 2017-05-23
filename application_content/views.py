@@ -2,15 +2,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth import update_session_auth_hash, authenticate
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-
+from django.contrib.auth.models import User
 
 
 
 from social_django.models import UserSocialAuth
+
+from application_content.forms import RegistrationForm
 
 
 def index(request):
@@ -20,12 +22,14 @@ def index(request):
     }
     return HttpResponse(template.render(context, request))
 
+
+@login_required
 def profile(request):
     template = loader.get_template('user_profile/profile.html')
     context = {
 
     }
-    return HttpResponse(template.render(context, request))    
+    return HttpResponse(template.render(context, request))
 
 
 def login(request):
@@ -38,10 +42,35 @@ def login(request):
 
 def logout_page(request):
     logout(request)
-    template = loader.get_template('registration/login.html')
-    context = {
+    return HttpResponseRedirect("/login")
 
-    }
+
+def register_page(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            user = User.objects.create_user(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password1'],
+                email=form.cleaned_data['email'],
+                first_name=form.cleaned_data['first_name'],
+                last_name=form.cleaned_data['last_name']
+            )
+            user.save()
+            # if form.cleaned_data['log_on']:
+            #     user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            #     # login(request, user)
+            #     template = loader.get_template("home_page/index.html")
+            #     context = {'user': user}
+            #     return HttpResponseRedirect(template.render(context, request))
+            # else:
+            template = loader.get_template("registration/register_success.html")
+            context = {'username': form.cleaned_data['username']}
+            return HttpResponse(template.render(context, request))
+    else:
+        form = RegistrationForm()
+    template = loader.get_template("registration/register.html")
+    context = {'form': form}
     return HttpResponse(template.render(context, request))
 
 
