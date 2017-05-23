@@ -28,12 +28,6 @@
                         <div class="btn-group">
                             <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'logout' %}">Log out</a>
                         </div>
-                        {% else %}
-                        <!-- Primary Action Button -->
-                        <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'login' %}">Log in</a>
-                        </div>
-                        {% endif %}
 
 
                         <!-- User Avatar / Profile -->
@@ -48,6 +42,13 @@
                                 </ul>
                             </div>
                         </div>
+                        {% else %}
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'login' %}">Log in</a>
+                        </div>
+                        {% endif %}
+
                     </div>                        
                 </div>
             </div>
@@ -75,7 +76,7 @@
                         </div>
                     </div>
                 </div>  
-            </div> -->
+            </div>
 
             <!-- Application Content -->
             <div class="g-application-content">    

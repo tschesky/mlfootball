@@ -12,7 +12,7 @@
       </form>
     {% else %}
       <button type="button" disabled>Disconnect from Facebook</button>
-      <p style="color: red">You must <a href="/news/settings/password">define a password</a> for your account before disconnecting from Facebook.</p>
+      <p style="color: red">You must <a href="{% url 'password' %}">define a password</a> for your account before disconnecting from Facebook.</p>
     {% endif %}
   {% else %}
     <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
