@@ -17,7 +17,7 @@
 
                     <!-- Screen Name -->
                     <div class="pull-left g-navigation-text g-mobile-hide">
-                        <h4>User profile: John Johnson</h4>
+                        <h4>User profile: {{  user.first_name }} {{  user.last_name }}</h4>
                     </div>
 
                     <div class="pull-right "> 
@@ -59,18 +59,20 @@
 
                                         <div class="profile-usertitle">
                                             <div class="profile-usertitle-name">
-                                                John Johnson
+                                                {{  user.first_name }} {{  user.last_name }}
                                             </div>
+                                            <!--
                                             <div class="profile-usertitle-job">
                                                 Batman
                                             </div>
+                                            -->
                                         </div>
-
+                                        <!--
                                         <div class="profile-userbuttons">
                                             <button type="button" class="btn btn-success btn-sm">Follow</button>
                                             <button type="button" class="btn btn-danger btn-sm">Message</button>
                                         </div>
-
+                                        -->
                                         <div class="profile-usermenu">
                                             <ul class="nav">
                                                 <li class="active" id="overview">
@@ -99,15 +101,15 @@
                                                 <div class="row">
                                                     <div class="col-sm-6 col-md-8">
                                                         <h4>
-                                                            Bhaumik Patel</h4>
-                                                        <small><cite title="San Francisco, USA">San Francisco, USA <i class="glyphicon glyphicon-map-marker">
+                                                            {{  user.first_name }} {{  user.last_name }}</h4>
+                                                        <small><cite title="San Francisco, USA">{{ data.gender }}<i class="glyphicon glyphicon-map-marker">
                                                         </i></cite></small>
                                                         <p>
-                                                            <i class="glyphicon glyphicon-envelope"></i>email@example.com
+                                                            <i class="glyphicon glyphicon-envelope"></i>{{ user.email }}
                                                             <br />
-                                                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>
-                                                            <br />
-                                                            <i class="glyphicon glyphicon-gift"></i>June 02, 1988</p>
+{#                                                            <i class="glyphicon glyphicon-globe"></i><a href="{{ data.website }}">{{ data.website }}</a>#}
+{#                                                            <br />#}
+                                                            <i class="glyphicon glyphicon-gift"></i>{{ data.birthday }}</p>
                                                     </div>
                                                 </div>
                                         </div>

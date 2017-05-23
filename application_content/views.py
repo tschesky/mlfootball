@@ -1,3 +1,6 @@
+import urllib
+import json
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -7,8 +10,6 @@ from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-
-
 
 from social_django.models import UserSocialAuth
 
@@ -25,10 +26,25 @@ def index(request):
 
 @login_required
 def profile(request):
+    social_user = request.user.social_auth.filter(
+        provider='facebook',
+    ).first()
+    if social_user:
+        url = u'https://graph.facebook.com/v2.9/' \
+              u'me?fields=id,name,website,birthday,locale' \
+              u'&access_token={0}'.format(
+            social_user.extra_data['access_token']
+        )
+        req = urllib.request.Request(url)
+        data = json.loads(urllib.request.urlopen(req).read())
+        context = {
+            'data': data
+        }
+    else:
+        context = {
+        }
     template = loader.get_template('user_profile/profile.html')
-    context = {
 
-    }
     return HttpResponse(template.render(context, request))
 
 
@@ -118,12 +134,11 @@ def password(request):
     return render(request, 'registration/password.html', {'form': form})
 
 
-
 def news(request):
     template = loader.get_template('news/news.html')
     context = {'tweets': get_tweets()
 
-    }
+               }
     return HttpResponse(template.render(context, request))
 
 
@@ -137,7 +152,7 @@ def get_tweets():
                           access_token_key='866322307740028933-GogzPQhoHMrCDhSKnoev5GorTFmqi1h',
                           access_token_secret='kSPEhATZzYYImWh2ZwwMOR3J0dtadxF4cSVDiVJ06Ty94')
 
-        latest =  api.GetUserTimeline(screen_name='mlfootball_test', exclude_replies=True, include_rts=False)
+        latest = api.GetUserTimeline(screen_name='mlfootball_test', exclude_replies=True, include_rts=False)
         for tweet in latest:
             status = tweet.text
             tweet_date = tweet.created_at
