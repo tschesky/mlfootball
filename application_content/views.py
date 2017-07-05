@@ -15,9 +15,9 @@ from social_django.models import UserSocialAuth
 
 def index(request):
     """
-
-    :param request:
-    :return:
+    index.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
     """
     template = loader.get_template('home_page/index.html')
     context = {
@@ -27,9 +27,9 @@ def index(request):
 
 def profile(request):
     """
-
-    :param request:
-    :return:
+    profile.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
     """
     template = loader.get_template('user_profile/profile.html')
     context = {
@@ -39,6 +39,11 @@ def profile(request):
 
 
 def login(request):
+    """
+    login.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
+    """
     template = loader.get_template('registration/login.html')
     context = {
 
@@ -47,6 +52,11 @@ def login(request):
 
 
 def logout_page(request):
+    """
+    login.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
+    """
     logout(request)
     template = loader.get_template('registration/login.html')
     context = {
@@ -57,6 +67,14 @@ def logout_page(request):
 
 @login_required
 def settings(request):
+    """
+    trial of  authentication to:
+     * facebook
+     * github
+     login is required to proceed
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
+    """
     user = request.user
 
     try:
@@ -80,6 +98,13 @@ def settings(request):
 
 @login_required
 def password(request):
+    """
+    Validation of form and changing password
+    login is required to proceed
+    :param request: HttpRequest object
+    :return: http response with context rendered on template,
+            form with registration data
+    """
     if request.user.has_usable_password():
         PasswordForm = PasswordChangeForm
     else:
@@ -101,6 +126,11 @@ def password(request):
 
 
 def news(request):
+    """
+    news.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
+    """
     template = loader.get_template('news/news.html')
     context = {'tweets': get_tweets()
 
@@ -109,6 +139,13 @@ def news(request):
 
 
 def get_tweets():
+    """
+    internal function - not called from a URL
+    function initially prepared to parse tweets content,
+    it was replaced by tweeter widget displaying twitter timeline
+    may be used for future processing
+    :return: table with text of tweets from specified site
+    """
     """internal function - not called from a URL"""
     tweets = []
     try:
