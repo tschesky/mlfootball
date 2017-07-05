@@ -11,129 +11,203 @@
 
     <!-- Fluid Container -->
     <div class="container-fluid g-aside-has-aside">
-    	<!-- Header with main buttons -->
-            <div class="row g-header">
-                <div class="col-sm-12">
+        <!-- Header with main buttons -->
+        <div class="row g-header">
+            <div class="col-sm-12">
 
-                    <!-- Screen Name -->
-                    <div class="pull-left g-navigation-text g-mobile-hide">
-                        <h4>User profile: {{  user.first_name }} {{  user.last_name }}</h4>
+                <!-- Screen Name -->
+                <div class="pull-left g-navigation-text g-mobile-hide">
+                    <h4>User profile: {{ user.first_name }} {{ user.last_name }}</h4>
+                </div>
+
+                <div class="pull-right ">
+
+                    <!-- Primary Action Button -->
+                    <div class="btn-group">
+                        <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log
+                            out</a>
                     </div>
 
-                    <div class="pull-right "> 
+                    <!-- User Avatar / Profile -->
+                    <div class="btn-group">
+                        <div class="dropdown">
 
-                        <!-- Primary Action Button -->
-                        <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
+                            <img class="g-header-avatar dropdown-toggle"
+                                 src="http://graph.facebook.com/{{ facebook_login.extra_data.id }}/picture"
+                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                <li>Pozycja 1</li>
+                                <li role="separator" class="divider"></li>
+                                <li>Pozycja 2</li>
+                            </ul>
                         </div>
-
-                        <!-- User Avatar / Profile -->
-                        <div class="btn-group">
-                            <div class="dropdown">
-
-                                <img class="g-header-avatar dropdown-toggle" src="{% static 'images/avatar.png' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
-                                    <li>Pozycja 1</li>
-                                    <li role="separator" class="divider"></li>
-                                    <li>Pozycja 2</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>                        
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Application Content -->
-            <div class="g-application-content">    
-                <!-- Card Row -->
-                <div class="row">
-                    <div class="col-md-12">            
-                        <div class="container">
-                            <div class="row profile">
-                                <div class="col-md-3">
-                                    <div class="profile-sidebar">
-                                        <!-- SIDEBAR USERPIC -->
-                                        <div class="profile-userpic">
-                                            <img src="{% static 'images/avatar.png' %}" class="img-responsive" alt="">
-                                        </div>
+        <!-- Application Content -->
+        <div class="g-application-content">
+            <!-- Card Row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="row profile">
+                            <div class="col-md-3">
+                                <div class="profile-sidebar">
+                                    <!-- SIDEBAR USERPIC -->
+                                    <div class="profile-userpic">
+                                        <img src="http://graph.facebook.com/{{ facebook_login.extra_data.id }}/picture"
+                                             class="img-responsive" alt="">
+                                    </div>
 
-                                        <div class="profile-usertitle">
-                                            <div class="profile-usertitle-name">
-                                                {{  user.first_name }} {{  user.last_name }}
-                                            </div>
-                                            <!--
-                                            <div class="profile-usertitle-job">
-                                                Batman
-                                            </div>
-                                            -->
+                                    <div class="profile-usertitle">
+                                        <div class="profile-usertitle-name">
+                                            {{ user.first_name }} {{ user.last_name }}
                                         </div>
                                         <!--
-                                        <div class="profile-userbuttons">
-                                            <button type="button" class="btn btn-success btn-sm">Follow</button>
-                                            <button type="button" class="btn btn-danger btn-sm">Message</button>
+                                        <div class="profile-usertitle-job">
+                                            Batman
                                         </div>
                                         -->
-                                        <div class="profile-usermenu">
-                                            <ul class="nav">
-                                                <li class="active" id="overview">
-                                                    <a href="#" onclick="return false;">
+                                    </div>
+                                    <!--
+                                    <div class="profile-userbuttons">
+                                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Message</button>
+                                    </div>
+                                    -->
+                                    <div class="profile-usermenu">
+                                        <ul class="nav">
+                                            <li class="active" id="overview">
+                                                <a href="#" onclick="return false;">
                                                     <i class="glyphicon glyphicon-home"></i>
                                                     Overview </a>
-                                                </li>
-                                                <li  id="settings">
-                                                    <a href="#" onclick="return false;">
+                                            </li>
+                                            <li id="settings">
+                                                <a href="#settings" onclick="return false;">
                                                     <i class="glyphicon glyphicon-user"></i>
                                                     Account Settings </a>
-                                                </li>
-                                                <li id="help">
-                                                    <a href="#" onclick="return false;">
+                                            </li>
+                                            <li id="help">
+                                                <a href="#" onclick="return false;">
                                                     <i class="glyphicon glyphicon-flag"></i>
                                                     Help </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                            </li>
+                                        </ul>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="profile-content" id="overview_content">
+                                    <div class="col-xs-12 col-sm-6 col-md-6">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-8">
+                                                <h4>
+                                                    {{ user.first_name }} {{ user.last_name }}</h4>
+                                                <small><cite title="San Francisco, USA">{{ data.gender }}<i
+                                                        class="glyphicon glyphicon-map-marker">
+                                                </i></cite></small>
+                                                <p>
+                                                    <i class="glyphicon glyphicon-envelope"></i>{{ user.email }}
+                                                    <br/>
+                                                    {#   <i class="glyphicon glyphicon-globe"></i><a href="{{ data.website }}">{{ data.website }}</a>#}
+                                                    {#   <br />#}
+                                                    <i class="glyphicon glyphicon-gift"></i>{{ data.birthday }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-9">
-                                    <div class="profile-content" id="overview_content">
-                                       <div class="col-xs-12 col-sm-6 col-md-6">
-                                                <div class="row">
-                                                    <div class="col-sm-6 col-md-8">
-                                                        <h4>
-                                                            {{  user.first_name }} {{  user.last_name }}</h4>
-                                                        <small><cite title="San Francisco, USA">{{ data.gender }}<i class="glyphicon glyphicon-map-marker">
-                                                        </i></cite></small>
-                                                        <p>
-                                                            <i class="glyphicon glyphicon-envelope"></i>{{ user.email }}
-                                                            <br />
-{#                                                            <i class="glyphicon glyphicon-globe"></i><a href="{{ data.website }}">{{ data.website }}</a>#}
-{#                                                            <br />#}
-                                                            <i class="glyphicon glyphicon-gift"></i>{{ data.birthday }}</p>
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </div>
-                                    <div class="profile-content" id="settings_content" style="display: none">
-                                       Some settings stuff here
-                                    </div>
-                                    <div class="profile-content" id="help_content" style="display: none">
-                                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla ante turpis, et tempor sapien dapibus id. Fusce sit amet nunc mi. 
-                                       Cras semper sem id ante sodales, eu porta purus tempus. Praesent vulputate turpis efficitur dignissim efficitur. 
-                                       Donec tempus nisl sem, vel tincidunt urna bibendum non. Donec sit amet fermentum mauris, sit amet tristique lacus. 
-                                       Phasellus ornare neque sit amet erat euismod, eget tempus odio mattis. Morbi sapien tortor, tincidunt in ligula et, placerat elementum quam. 
-                                       Curabitur sed malesuada enim, quis fringilla magna. Nam volutpat ultrices nibh. 
-                                       Praesent feugiat, sapien vel ullamcorper facilisis, nisl nisl posuere sem, malesuada commodo mi turpis non ipsum. Integer non lacinia urna. 
-                                       Donec sit amet sollicitudin augue. Praesent pellentesque quam nec ultrices lacinia. Pellentesque volutpat aliquam nibh non tincidunt. 
-                                    </div>
-                                </div>
-    </div>
-</div>
+                                <div class="profile-content" id="settings_content" style="display: none">
+                                    <h2>Settings</h2>
+                                    <p>Hello {{ user.username }}! This is the place where you can manage your
+                                        profile.</p>
 
+                                    <h3>Facebook</h3>
+                                    {% if facebook_login %}
+                                        <p>Connected as <a
+                                                href="https://facebook.com/{{ facebook_login.extra_data.id }}/"
+                                                target="_blank">{{ facebook_login.extra_data.id }}</a></p>
+                                        {% if can_disconnect %}
+                                            <form method="post" action="{% url 'social:disconnect' 'facebook' %}">
+                                                {% csrf_token %}
+                                                <button type="submit">Disconnect from Facebook</button>
+                                            </form>
+                                        {% else %}
+                                            <button type="button" disabled>Disconnect from Facebook</button>
+                                            <p style="color: red">You must <a href="{% url 'password' %}">define a
+                                                password</a> for your account before disconnecting from Facebook.</p>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'social:begin' 'facebook' %}">Connect to Facebook</a>
+                                    {% endif %}
+
+                                    <h3>GitHub</h3>
+                                    {% if github_login %}
+                                        <p>Connected as <a
+                                                href="https://github.com/{{ github_login.extra_data.login }}/"
+                                                target="_blank">{{ github_login.extra_data.login }}</a></p>
+                                        {% if can_disconnect %}
+                                            <form method="post" action="{% url 'social:disconnect' 'github' %}">
+                                                {% csrf_token %}
+                                                <button type="submit">Disconnect from GitHub</button>
+                                            </form>
+                                        {% else %}
+                                            <button type="button" disabled>Disconnect from GitHub</button>
+                                            <p style="color: red">You must <a href="{% url 'password' %}">define a
+                                                password</a> for your account before disconnecting from Github.</p>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'social:begin' 'github' %}">Connect to GitHub</a>
+                                    {% endif %}
+
+                                    <h3>Twitter</h3>
+                                    {% if twitter_login %}
+                                        <p>Connected as <a
+                                                href="https://twitter.com/{{ twitter_login.extra_data.access_token.screen_name }}/"
+                                                target="_blank">@{{ twitter_login.extra_data.access_token.screen_name }}</a>
+                                        </p>
+                                        {% if can_disconnect %}
+                                            <form method="post" action="{% url 'social:disconnect' 'twitter' %}">
+                                                {% csrf_token %}
+                                                <button type="submit">Disconnect from Twitter</button>
+                                            </form>
+                                        {% else %}
+                                            <button type="button" disabled>Disconnect from Twitter</button>
+                                            <p style="color: red">You must <a href="{% url 'password' %}">define a
+                                                password</a> for your account before disconnecting from Twitter.</p>
+                                        {% endif %}
+                                    {% else %}
+                                        <a href="{% url 'social:begin' 'twitter' %}">Connect to Twitter</a>
+                                    {% endif %}
+
+                                </div>
+
+
+                                <div class="profile-content" id="help_content" style="display: none">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fringilla ante
+                                    turpis, et tempor sapien dapibus id. Fusce sit amet nunc mi.
+                                    Cras semper sem id ante sodales, eu porta purus tempus. Praesent vulputate turpis
+                                    efficitur dignissim efficitur.
+                                    Donec tempus nisl sem, vel tincidunt urna bibendum non. Donec sit amet fermentum
+                                    mauris, sit amet tristique lacus.
+                                    Phasellus ornare neque sit amet erat euismod, eget tempus odio mattis. Morbi sapien
+                                    tortor, tincidunt in ligula et, placerat elementum quam.
+                                    Curabitur sed malesuada enim, quis fringilla magna. Nam volutpat ultrices nibh.
+                                    Praesent feugiat, sapien vel ullamcorper facilisis, nisl nisl posuere sem, malesuada
+                                    commodo mi turpis non ipsum. Integer non lacinia urna.
+                                    Donec sit amet sollicitudin augue. Praesent pellentesque quam nec ultrices lacinia.
+                                    Pellentesque volutpat aliquam nibh non tincidunt.
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>  
-                <!-- / Card Row -->
-           </div>
+
+                </div>
+            </div>
+            <!-- / Card Row -->
+        </div>
 
     </div>
 {% endblock %}

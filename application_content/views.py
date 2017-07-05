@@ -1,16 +1,15 @@
-import urllib
 import json
+import urllib
 
-from django.http import HttpResponse, HttpResponseRedirect
-from django.template import loader
+from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AdminPasswordChangeForm, PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash, authenticate
-from django.contrib import messages
-from django.shortcuts import render, redirect
-from django.contrib.auth import logout
 from django.contrib.auth.models import User
-
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.template import loader
 from social_django.models import UserSocialAuth
 
 from application_content.forms import RegistrationForm
@@ -37,6 +36,20 @@ def profile(request):
     :return: http response with context rendered on template
     """
 
+    user = request.user
+
+    try:
+        facebook_login = user.social_auth.get(provider='facebook')
+    except UserSocialAuth.DoesNotExist:
+        facebook_login = None
+
+    try:
+        github_login = user.social_auth.get(provider='github')
+    except UserSocialAuth.DoesNotExist:
+        github_login = None
+
+    can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
+
     social_user = request.user.social_auth.filter(
         provider='facebook',
     ).first()
@@ -49,10 +62,14 @@ def profile(request):
         req = urllib.request.Request(url)
         data = json.loads(urllib.request.urlopen(req).read())
         context = {
-            'data': data
+            'data': data,
+            'facebook_login': facebook_login,
+            'github_login': github_login,
+            'can_disconnect': can_disconnect
         }
     else:
         context = {
+
         }
     template = loader.get_template('user_profile/profile.html')
 
@@ -133,11 +150,17 @@ def settings(request):
     except UserSocialAuth.DoesNotExist:
         github_login = None
 
+    try:
+        twitter_login = user.social_auth.get(provider='twitter')
+    except UserSocialAuth.DoesNotExist:
+        twitter_login = None
+
     can_disconnect = (user.social_auth.count() > 1 or user.has_usable_password())
 
     return render(request, 'registration/settings.html', {
         'facebook_login': facebook_login,
         'github_login': github_login,
+        'twitter_login': twitter_login,
         'can_disconnect': can_disconnect
     })
 
