@@ -1,0 +1,27 @@
+dist: trusty
+
+sudo: required
+
+language: python
+
+python:
+  - "2.7"
+
+install: "pip install -r requirements.txt"
+
+addons:
+  sonarqube:
+    organization: "tschesky-github" # the key of the org you chose at step #3
+
+jdk:
+  - oraclejdk8
+
+script:
+ - sonar-scanner
+
+cache:
+  directories:
+    - '$HOME/.sonar/cache'
+
+after_success:
+  - coveralls

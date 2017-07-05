@@ -14,15 +14,27 @@
 
                     <!-- Screen Name -->
                     <div class="pull-left g-navigation-text g-mobile-hide">
+                        {% if user.is_authenticated %}
+                        <h4>Hello {{ user.first_name }}! We made some predictions for the upcoming week for you.</h4>
+                        {% else %}
                         <h4>Predictions for the upcoming week</h4>
+                        {%  endif %}
                     </div>
 
                     <div class="pull-right "> 
 
+                        {% if user.is_authenticated %}
                         <!-- Primary Action Button -->
                         <div class="btn-group">
-                            <a class="btn btn-primary g-ripple-effect" data-remote="true" href="{% url 'logout' %}">Log out</a>
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'logout' %}">Log out</a>
                         </div>
+                        {% else %}
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'login' %}">Log in</a>
+                        </div>
+                        {% endif %}
+
 
                         <!-- User Avatar / Profile -->
                         <div class="btn-group">
@@ -43,16 +55,12 @@
             <div class="row g-subnavigation">
                 <div class="col-md-12 g-tabs">
 
-                    <a href="https://www.w3schools.com">Visit W3Schools</a>
-
-                    <!-- All, Opened, Ready -->
+                  
                     <ul class="nav nav-pills pull-left" role="tablist">
                         <li class="showall active">   <a>Wszystkie <span class="badge g-badge-blue" id="all-number">10</span></a></li>
                         <li class="showopen">  <a>Rozegrane<span class="badge g-badge-red" id="open-number">5</span></a></li>
                         <li class="showready"> <a>Nierozegrane    <span class="badge g-badge-green" id="ready-number">5</span></a></li>
                     </ul>  
- 
-                    <!-- Sortowanie --> 
                     <div class="pull-right g-mobile-hide">
                         <div class="btn-group">
                             <div class="dropdown">
@@ -66,9 +74,8 @@
                             </div>
                         </div>
                     </div>
-                            
                 </div>  
-            </div>
+            </div> -->
 
             <!-- Application Content -->
             <div class="g-application-content">    

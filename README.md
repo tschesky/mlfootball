@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tschesky/mlfootball.svg?branch=master)](https://travis-ci.org/tschesky/mlfootball)
+
 # Used software
 
 python - version 2.7.12

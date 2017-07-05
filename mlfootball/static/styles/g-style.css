@@ -931,6 +931,15 @@ label {
 /*# sourceMappingURL=g-style.css.map */
 
 
+.btn-round-lg{
+border-radius: 22.5px;
+}
+.btn-round{
+border-radius: 17px;
+}
+
+
+
 /* styles for TWITTER NEWS site, should be moved to twitter-news.css */
 
 .timeline_window{
@@ -967,3 +976,4 @@ label {
   background: #fff;
   height: 650px;
 }
+
