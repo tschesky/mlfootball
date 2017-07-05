@@ -32,7 +32,8 @@
                     <div class="btn-group">
                         <div class="dropdown">
 
-                            <img class="g-header-avatar dropdown-toggle" src="{% static 'images/avatar.png' %}"
+                            <img class="g-header-avatar dropdown-toggle"
+                                 src="http://graph.facebook.com/{{ facebook_login.extra_data.id }}/picture"
                                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
                                 <li>Pozycja 1</li>
@@ -56,7 +57,8 @@
                                 <div class="profile-sidebar">
                                     <!-- SIDEBAR USERPIC -->
                                     <div class="profile-userpic">
-                                        <img src="{% static 'images/avatar.png' %}" class="img-responsive" alt="">
+                                        <img src="http://graph.facebook.com/{{ facebook_login.extra_data.id }}/picture"
+                                             class="img-responsive" alt="">
                                     </div>
 
                                     <div class="profile-usertitle">
