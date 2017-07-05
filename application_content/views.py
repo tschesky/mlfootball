@@ -14,6 +14,11 @@ from social_django.models import UserSocialAuth
 
 
 def index(request):
+    """
+
+    :param request:
+    :return:
+    """
     template = loader.get_template('home_page/index.html')
     context = {
 
@@ -21,6 +26,11 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def profile(request):
+    """
+
+    :param request:
+    :return:
+    """
     template = loader.get_template('user_profile/profile.html')
     context = {
 
