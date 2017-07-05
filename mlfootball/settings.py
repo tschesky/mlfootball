@@ -28,6 +28,12 @@ DEBUG = True
 
 SOCIAL_AUTH_FACEBOOK_KEY = '835038046651208'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '329f93f5c9cf1759be902e409cd3b724'  # App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = [
+    'email',
+    'public_profile',
+    'user_birthday',
+    'user_hometown',
+]
 SOCIAL_AUTH_GITHUB_KEY = 'b311221b4acc2268c6f3'
 SOCIAL_AUTH_GITHUB_SECRET = '2318b7152cdb53206dcbab775e0c13f4ae90ec84'
 SOCIAL_AUTH_LOGIN_ERROR_URL = '/settings'
