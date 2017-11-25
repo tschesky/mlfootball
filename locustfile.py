@@ -14,6 +14,10 @@ class UserBehavior(TaskSet):
 	def profile(self):
 		self.client.get("/profile")
 
+	@task(2)
+	def profile(self):
+		self.client.get("/news")
+
 class WebsiteUser(HttpLocust):
 	task_set = UserBehavior
 	min_wait = 5000

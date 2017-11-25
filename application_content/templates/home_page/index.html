@@ -84,92 +84,34 @@
                 <div class="row">
                     <div class="col-md-12">            
                     		<table class="g-table-card" id="results_table">
-                            <thead style="display: none">
+                            <thead>
                                 <tr>
-                                    <th>Data</th> <th>Drużyna A</th>  <th>Drużyna B</th> <th>Home win</th>  <th>Draw</th> <th>Away win</th> <th>Score</th>
+                                    <th>Data</th><th>Drużyna A</th><th>Drużyna B</th><th>CART</th><th>NB</th><th>SVM</th>
                                 </tr>
                             </thead>
-                            <tbody>                    
+                            <tbody>                
+                                    {% for item in matches %}    
                                 	<tr class="g-table-card-header" >
                                         <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            	<h4>25.06.2016</h4>            
+                                            <h4>{{ item.date }}</h4>            
                                         </td>
                                         <td class="g-vertical-middle strike-out">
-                                            <h4>Totenham</h4>
+                                            <h4>{{ item.h_team }}</h4>
                                         </td>
                                         <td class="g-vertical-middle strike-out">
-                                            <h4>Liverpool</h4>
-                                        </td>  
+                                            <h4>{{ item.a_team }}</h4>
+                                        </td>
                                         <td class="g-vertical-middle strike-out">
-                                            <h4>30%</h4>
-                                        </td> 
+                                            <h4>{{ item.cart_res }}</h4>
+                                        </td>
                                         <td class="g-vertical-middle strike-out">
-                                            <h4>50%</h4>
-                                        </td> 
+                                            <h4>{{ item.nb_res }}</h4>
+                                        </td>
                                         <td class="g-vertical-middle strike-out">
-                                            <h4>20%</h4>
-                                        </td>    
+                                            <h4>{{ item.svm_res }}</h4>
+                                        </td>
                                 	</tr>    
-                                	<tr class="g-table-card-header" >
-                                        <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            	<h4>25.06.2016</h4>            
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Totenham</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Liverpool</h4>
-                                        </td>  
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>30%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>50%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>20%</h4>
-                                        </td>    
-                                	</tr> 
-                                	<tr class="g-table-card-header" >
-                                        <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            	<h4>25.06.2016</h4>            
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Totenham</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Liverpool</h4>
-                                        </td>  
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>30%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>50%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>20%</h4>
-                                        </td>    
-                                	</tr> 
-                                	<tr class="g-table-card-header" >
-                                        <td class="text-center g-vertical-middle g-table-card-icon-td">
-                                            	<h4>25.06.2016</h4>            
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Totenham</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>Liverpool</h4>
-                                        </td>  
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>30%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>50%</h4>
-                                        </td> 
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>20%</h4>
-                                        </td>    
-                                	</tr>          
+                                    {% endfor %}
                             </tbody>
                         </table>
                     </div>

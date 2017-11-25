@@ -13,7 +13,7 @@ from django.template import loader
 from social_django.models import UserSocialAuth
 
 from application_content.forms import RegistrationForm
-
+from application_content.models import *
 
 def index(request):
     """
@@ -22,8 +22,9 @@ def index(request):
     :return: http response with context rendered on template
     """
     template = loader.get_template('home_page/index.html')
+    query_result = Matches.objects.all()
     context = {
-
+        "matches" : query_result
     }
     return HttpResponse(template.render(context, request))
 
