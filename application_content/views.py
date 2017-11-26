@@ -1,5 +1,6 @@
 import json
 import urllib
+import operator
 
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -23,8 +24,9 @@ def index(request):
     """
     template = loader.get_template('home_page/index.html')
     query_result = Matches.objects.all()
+    ordered = sorted(query_result, key=operator.attrgetter('date'))
     context = {
-        "matches" : query_result
+        "matches" : ordered
     }
     return HttpResponse(template.render(context, request))
 
