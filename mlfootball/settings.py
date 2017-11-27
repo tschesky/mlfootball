@@ -136,6 +136,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# CELERY STUFF
+BROKER_URL = 'redis://h:pb1c1d589ac087f7a66527cff790ecfaccb13376f0bf0145bf98cd5e5c2b6c8fb@ec2-34-252-120-111.eu-west-1.compute.amazonaws.com:18839'
+CELERY_RESULT_BACKEND = 'redis://h:pb1c1d589ac087f7a66527cff790ecfaccb13376f0bf0145bf98cd5e5c2b6c8fb@ec2-34-252-120-111.eu-west-1.compute.amazonaws.com:18839'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
