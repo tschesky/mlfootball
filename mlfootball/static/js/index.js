@@ -22,4 +22,9 @@ $(document).ready(function() {
     $('.premiere').removeClass('active');
     $('.all').removeClass('active');
   });
+
+  $('.clicker').click(function(){
+    $(this).toggleClass("clicked");
+    $(this).nextUntil('.clicker').slideToggle('normal');
+  });
 });

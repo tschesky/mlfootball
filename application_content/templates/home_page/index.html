@@ -1,7 +1,7 @@
 {% extends 'application_layouts/base_sidebar.html' %}
 
 {% load static %}
-
+{% load custom_tags %}
 <link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
 <link rel="stylesheet" href="{% static 'application_layouts/styles/twitter-news.css' %}">
 {% block content %}
@@ -67,38 +67,90 @@
             <div class="g-application-content">    
                 <!-- Card Row -->
                 <div class="row">
-                    <div class="col-md-12">            
-                    		<table class="g-table-card" id="results_table">
-                            <thead>
-                                <tr>
-                                    <th>Data</th><th>Drużyna A</th><th>Drużyna B</th><th>CART</th><th>NB</th><th>SVM</th>
-                                </tr>
-                            </thead>
-                            <tbody>                
+                    <div class="col-md-12">      
+                        <div class="divTable g-table-card g-table-issues mysortable sortable">                    
                                     {% for item in matches %}    
-                                	<tr class="g-table-card-header {{ item.league_id }}">
-                                        <td class="text-center g-vertical-middle g-table-card-icon-td">
+                                	<div class=" divRow g-table-card-header {{ item.league_id }} clicker">
+                                    <div class="overlay"></div>
+                                        <div class="divCell text-center g-vertical-middle g-table-card-icon-td">
                                             <h4>{{ item.date }}</h4>            
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
+                                        </div>
+                                        <div class="divCell g-vertical-middle strike-out">
                                             <h4>{{ item.h_team }}</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
+                                        </div>
+                                        <div class="divCell g-vertical-middle text-center strike-out">
+                                             {% if modes|get_item:item.match_id == 0 %}
+                                                <h4><font color="green">Winner</font> -- <font color="red">Looser</font></h4>
+                                             {% elif modes|get_item:item.match_id == 1 %}
+                                                <h4>-- <font color="yellow">Draw</font> --</h4>
+                                             {% elif modes|get_item:item.match_id == 2 %}
+                                                <h4><font color="red">Looser</font> -- <font color="green">Winner</font></h4>
+                                             {% endif %}
+                                        </div>
+                                        <div class="divCell g-vertical-middle strike-out">
                                             <h4>{{ item.a_team }}</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>{{ item.cart_res }}</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>{{ item.nb_res }}</h4>
-                                        </td>
-                                        <td class="g-vertical-middle strike-out">
-                                            <h4>{{ item.svm_res }}</h4>
-                                        </td>
-                                	</tr>    
+                                        </div>
+                                	</div>    
+                                    <div class="divDetail g-table-card-header more-match-info" style="display: none;"">
+                                            <div class=" divSubDetail">
+                                                <h4><i>Detailed match information:</i></h4>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <h4>Match date: {{ item.date }}</h4>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>CART predictor: {{ item.cart_res }}</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>Naive Bayes predictor: {{ item.nb_res }}</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>SMV Predictor: {{ item.svm_res }}</h4>
+                                                </div>
+                                            </div>
+                                    </div>
                                     {% endfor %}
-                            </tbody>
-                        </table>
+
+                                    <style type="text/css">
+                                        .divTable
+                                        {
+                                            display:  table;
+                                            width:100%;
+                                            border-spacing:5px;
+                                        }
+
+                                        .divRow
+                                        {
+                                           display:table-row;
+                                           width:100%;
+                                           background-color:#ffffff;
+                                        }
+
+                                        .divCell
+                                        {
+                                            float:left;/*fix for  buggy browsers*/
+                                            display:table-column;
+                                            width:25%;
+                                        }
+
+                                        .divDetail
+                                        {
+                                            float:left;/*fix for  buggy browsers*/
+                                            display:table-row;
+                                            width:100%;
+                                            border-left: 1px solid rgba(0, 0, 0, .25);
+                                            border-right: 1px solid rgba(0, 0, 0, .25);
+                                            border-bottom: 1px solid rgba(0, 0, 0, .25);
+                                            padding: 15px;
+                                        }
+
+
+                                        .divRow:hover, .divRow.clicked{
+                                            background: #e6e6e6;; /* make this whatever you want */
+                                        }
+                                    </style>
+                        </div>
                     </div>
                 </div>  
                 <!-- / Card Row -->

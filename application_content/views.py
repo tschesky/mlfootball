@@ -25,8 +25,17 @@ def index(request):
     template = loader.get_template('home_page/index.html')
     query_result = Matches.objects.all()
     ordered = sorted(query_result, key=operator.attrgetter('date'))
+
+    modes = {}
+    for record in ordered:
+        res_list = [record.cart_res, record.nb_res, record.svm_res]
+        modes[int(record.match_id)] = max(set(res_list), key=res_list.count)
+
+    print modes
+
     context = {
-        "matches" : ordered
+        "matches" : ordered,
+        "modes" : modes
     }
     return HttpResponse(template.render(context, request))
 
