@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'application_content',
-    'social_django'
+    'social_django',
+    'fontawesome'
 ]
 
 MIDDLEWARE = [

@@ -1,19 +1,49 @@
-<h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="hidden" name="next" value="/index" />
-    <button type="submit">Login</button>
-  </form>
-    <form action="/register">
-        <input type="submit" value="Register" />
-    </form>
-  <br>
-  <p><strong>-- OR --</strong></p>
-  <a href="{% url 'social:begin' 'github' %}">Login with GitHub</a><br>
-  <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a><br>
-  <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
+{% load static %}
+{% load fontawesome %}
+<head>
+  {% fontawesome_stylesheet %}
+  <link rel="stylesheet" href="{% static 'styles/bootstrap.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/login-page.css' %}">
+</head>
 
-<p>
-<div style="text-align:center;"><a href="/index">Go to main page.</a></div>
-</p>
+<body style="margin: 0px">
+  <div id="login-container" style="z-index: 99; background-image: url({% static 'images/loginbackground.png' %});">
+    <div id="login-content" class="text-center" style="padding: 40px; border: 2px solid rgba(255,255,255,0.16);">
+      <div class="form-group login-additional-margins-top">
+        <h2>Welcome to <strong>mlFOOTBALL</strong></h2>
+        <h4>Your on-line prediction system</h4>
+
+        <div class="field">
+          <!-- <%= f.label :username %> -->
+          {{ form.username }}
+        </div>
+
+        <div class="field">
+          <!-- <%= f.label :password %> -->
+          {{ form.password}}
+        </div>
+
+        <div class="form-group login-additional-margins-top">
+          <form method="post" class="form-field-button">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="/index" />
+            <button class= "btn-primary" type="submit">Login</button>
+          </form>
+          <form action="/register" class="form-field-button">
+              <input class= "btn-primary" type="submit" value="Register" />
+          </form>
+          <br>
+          <p class="alter-login-title">-- OR --</p>
+          <a href="{% url 'social:begin' 'github' %}" class="alter-login-icon"> {% fontawesome_icon 'github'  %} </a>
+          <a href="{% url 'social:begin' 'twitter' %}" class="alter-login-icon"> {% fontawesome_icon 'twitter'  %} </a>
+          <a href="{% url 'social:begin' 'facebook' %}" class="alter-login-icon"> {% fontawesome_icon 'facebook-official' %} </a>
+        </div>
+
+        <p>
+          <div style="text-align:center;"><a href="/index">Go to main page.</a></div>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+

@@ -1,0 +1,87 @@
+  #login-container
+  {
+    width: 100vw;
+    height: 100vh;
+    background-color: #384051;
+    position: fixed;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    background-position: center center;
+    background-size: cover;
+  }
+  #login-container h2, #login-container h4
+  {
+    font-weight: 300;
+    color: #fff;
+  }
+    #login-container .login-additional-margins-top {
+    margin-top: 32px; }
+  #login-container .login-restore-password {
+    color: #fff; }
+
+  .form-group h4 {
+    margin-top: 0;
+    margin-bottom: 0; }
+
+  .form-group label {
+    margin-top: 0;
+    margin-bottom: 0; }
+
+  .form-group label {
+    margin-bottom: 8px; }
+
+  #id_username{
+    border-radius: 0px;
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 1px;
+    height: 30px;
+  }
+
+  #id_password{
+    border-radius: 0px;
+    margin-top: 5px;
+    border-style: solid;
+    border-width: 1px;
+    height: 30px;
+  }
+
+  .btn-primary {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+    width: 180px;
+    height: 30px;
+  }
+
+  .form-field-button {
+    margin-bottom: 5px;
+  }
+
+  .alter-login-title {
+    color: #fff;
+    margin-bottom: 0px;
+    font-weight: bolder;
+  }
+
+  .alter-login-icon {
+    font-size: 30px;
+    margin-left: 5px;
+    margin-right: 5px;
+    color: #fff;
+  }
+
+  .alter-login-icon:hover {
+    text-decoration: none;
+    color: #337ab7;
+  }

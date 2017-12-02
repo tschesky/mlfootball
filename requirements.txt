@@ -17,3 +17,4 @@ python-coveralls
 redis
 celery
 celery[redis]
+django-fontawesome
