@@ -8,6 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
@@ -56,6 +57,7 @@ class AuthUser(models.Model):
 
 
 class AuthUserGroups(models.Model):
+
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     group = models.ForeignKey(AuthGroup, models.DO_NOTHING)
 
@@ -125,7 +127,6 @@ class Leagues(models.Model):
     description = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'leagues'
 
 
@@ -173,7 +174,6 @@ class LearningVectors(models.Model):
     ast = models.FloatField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'learning_vectors'
 
 
@@ -201,9 +201,14 @@ class Matches(models.Model):
     cart_res = models.IntegerField(blank=True, null=True)
     nb_res = models.IntegerField(blank=True, null=True)
     svm_res = models.IntegerField(blank=True, null=True)
+    cart_proba = ArrayField(models.FloatField(blank=True, null=True),
+                            size = 3, blank=True, null=True)
+    nb_proba = ArrayField(models.FloatField(blank=True, null=True),
+                         size = 3, blank=True, null=True)
+    svm_proba = ArrayField(models.FloatField(blank=True, null=True),
+                           size = 3, blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'matches'
 
 
@@ -271,7 +276,6 @@ class Teams(models.Model):
     name = models.TextField(blank=True, null=True)
 
     class Meta:
-        managed = False
         db_table = 'teams'
 
 

@@ -8,6 +8,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
@@ -201,6 +202,12 @@ class Matches(models.Model):
     cart_res = models.IntegerField(blank=True, null=True)
     nb_res = models.IntegerField(blank=True, null=True)
     svm_res = models.IntegerField(blank=True, null=True)
+    cart_proba = ArrayField(models.FloatField(blank=True, null=True),
+                            size = 3)
+    nb_proba = ArrayField(models.FloatField(blank=True, null=True),
+                         size = 3)
+    svm_proba = ArrayField(models.FloatField(blank=True, null=True),
+                           size = 3)
 
     class Meta:
         managed = False

@@ -1,0 +1,35 @@
+.divTable
+{
+    display:  table;
+    width:100%;
+    border-spacing:5px;
+}
+
+.divRow
+{
+   display:table-row;
+   width:100%;
+   background-color:#ffffff;
+}
+
+.divCell
+{
+    float:left;/*fix for  buggy browsers*/
+    display:table-column;
+    width:25%;
+}
+
+.divDetail
+{
+    float:left;/*fix for  buggy browsers*/
+    display:table-row;
+    width:100%;
+    border-left: 1px solid rgba(0, 0, 0, .25);
+    border-right: 1px solid rgba(0, 0, 0, .25);
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    padding: 15px;
+}
+
+.divRow:hover, .divRow.clicked{
+    background: #e6e6e6;; /* make this whatever you want */
+}

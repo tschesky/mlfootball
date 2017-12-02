@@ -2,8 +2,6 @@
 
 {% load static %}
 {% load custom_tags %}
-<link rel="stylesheet" href="{% static 'styles/g-style.css' %}">
-<link rel="stylesheet" href="{% static 'application_layouts/styles/twitter-news.css' %}">
 {% block content %}
 
     <!-- Fluid Container -->
@@ -100,56 +98,62 @@
                                             </div>
                                             <div class=" divSubDetail">
                                                 <div class="divCell g-vertical-middle strike-out">
-                                                    <h4>CART predictor: {{ item.cart_res }}</h4>
+                                                    <h4></h4>
                                                 </div>
                                                 <div class="divCell g-vertical-middle strike-out">
-                                                    <h4>Naive Bayes predictor: {{ item.nb_res }}</h4>
+                                                    <h4> {{ item.h_team }}</h4>
                                                 </div>
                                                 <div class="divCell g-vertical-middle strike-out">
-                                                    <h4>SMV Predictor: {{ item.svm_res }}</h4>
+                                                    <h4> Draw</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.a_team }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>CART predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.2 }}%</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>NB predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.2 }}%</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>SVM predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.2 }}%</h4>
                                                 </div>
                                             </div>
                                     </div>
                                     {% endfor %}
-
-                                    <style type="text/css">
-                                        .divTable
-                                        {
-                                            display:  table;
-                                            width:100%;
-                                            border-spacing:5px;
-                                        }
-
-                                        .divRow
-                                        {
-                                           display:table-row;
-                                           width:100%;
-                                           background-color:#ffffff;
-                                        }
-
-                                        .divCell
-                                        {
-                                            float:left;/*fix for  buggy browsers*/
-                                            display:table-column;
-                                            width:25%;
-                                        }
-
-                                        .divDetail
-                                        {
-                                            float:left;/*fix for  buggy browsers*/
-                                            display:table-row;
-                                            width:100%;
-                                            border-left: 1px solid rgba(0, 0, 0, .25);
-                                            border-right: 1px solid rgba(0, 0, 0, .25);
-                                            border-bottom: 1px solid rgba(0, 0, 0, .25);
-                                            padding: 15px;
-                                        }
-
-
-                                        .divRow:hover, .divRow.clicked{
-                                            background: #e6e6e6;; /* make this whatever you want */
-                                        }
-                                    </style>
                         </div>
                     </div>
                 </div>  
