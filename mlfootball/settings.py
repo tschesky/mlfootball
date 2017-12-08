@@ -114,7 +114,7 @@ WSGI_APPLICATION = 'mlfootball.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': '89.69.62.221',
+        'HOST': '89.69.65.233',
         'PORT': '5432',
         'NAME': 'mlfootball',
         'USER': 'mlfootball',
