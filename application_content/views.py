@@ -71,8 +71,7 @@ def profile(request):
               u'&access_token={0}'.format(
             social_user.extra_data['access_token']
         )
-        req = urllib.request.Request(url)
-        data = json.loads(urllib.request.urlopen(req).read())
+        data = json.loads(urllib.urlopen(url).read())
         context = {
             'data': data,
             'facebook_login': facebook_login,
