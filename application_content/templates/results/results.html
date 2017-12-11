@@ -1,0 +1,164 @@
+{% extends 'application_layouts/base_sidebar.html' %}
+
+{% load static %}
+{% load custom_tags %}
+{% block content %}
+
+    <!-- Fluid Container -->
+    <div class="container-fluid g-aside-has-aside">
+    	<!-- Header with main buttons -->
+            <div class="row g-header">
+                <div class="col-sm-12">
+
+                    <!-- Screen Name -->
+                    <div class="pull-left g-navigation-text g-mobile-hide">
+                        <h4>Results of the performed predictions</h4>
+                    </div>
+
+                    <div class="pull-right "> 
+
+                        {% if user.is_authenticated %}
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'logout' %}">Log out</a>
+                        </div>
+
+
+                        <!-- User Avatar / Profile -->
+                        <div class="btn-group">
+                            <div class="dropdown">
+
+                                <img class="g-header-avatar dropdown-toggle" src="{% static 'images/avatar.png' %}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left: -90px">
+                                    <li>Pozycja 1</li>
+                                    <li role="separator" class="divider"></li>
+                                    <li>Pozycja 2</li>
+                                </ul>
+                            </div>
+                        </div>
+                        {% else %}
+                        <!-- Primary Action Button -->
+                        <div class="btn-group">
+                            <a class="btn btn-primary g-ripple-effect btn-round-lg btn-lg" data-remote="true" href="{% url 'login' %}">Log in</a>
+                        </div>
+                        {% endif %}
+
+                    </div>                        
+                </div>
+            </div>
+
+            <div class="row g-subnavigation">
+                <div class="col-md-12 g-tabs">
+                    <ul class="nav nav-pills pull-left" role="tablist">
+                        <li class="all active"> <a>All leagues</a></li>
+                        <li class="premiere">   <a>Premiere league </a></li>
+                        <li class="laliga">     <a>Laliga         </a></li>
+                    </ul>   
+                </div>  
+            </div>
+
+            <!-- Application Content -->
+            <div class="g-application-content">    
+                <!-- Card Row -->
+                <div class="row">
+                    <div class="col-md-12">      
+                        <div class="divTable g-table-card g-table-issues mysortable sortable">                    
+                                    {% for item in matches %}    
+                                    {% if ok|get_item:item.match_id == 1 %}
+                                	<div class=" divRow g-table-card-header {{ item.league_id }} clicker" style="background-color: #6eb589;">
+                                    {% else %}
+                                    <div class=" divRow g-table-card-header {{ item.league_id }} clicker" style="background-color: #bc5356;">
+                                    {% endif %}
+                                    <div class="overlay"></div>
+                                        <div class="divCell text-center g-vertical-middle g-table-card-icon-td">
+                                            <h4>{{ item.date }}</h4>            
+                                        </div>
+                                        <div class="divCell g-vertical-middle strike-out">
+                                            <h4>{{ item.h_team }}</h4>
+                                        </div>
+                                        <div class="divCell g-vertical-middle text-center strike-out">
+                                             {% if modes|get_item:item.match_id == 0 %}
+                                                <h4><font color="green">Winner</font> -- <font color="red">Looser</font></h4>
+                                             {% elif modes|get_item:item.match_id == 1 %}
+                                                <h4>-- <font color="yellow">Draw</font> --</h4>
+                                             {% elif modes|get_item:item.match_id == 2 %}
+                                                <h4><font color="red">Looser</font> -- <font color="green">Winner</font></h4>
+                                             {% endif %}
+                                        </div>
+                                        <div class="divCell g-vertical-middle strike-out">
+                                            <h4>{{ item.a_team }}</h4>
+                                        </div>
+                                	</div>    
+                                    <div class="divDetail g-table-card-header more-match-info" style="display: none;"">
+                                            <div class=" divSubDetail">
+                                                <h4><i>Detailed match information:</i></h4>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <h4>Match date: {{ item.date }}</h4>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4></h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.h_team }}</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> Draw</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.a_team }}</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>CART predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.cart_proba.2 }}%</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>NB predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.nb_proba.2 }}%</h4>
+                                                </div>
+                                            </div>
+                                            <div class=" divSubDetail">
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4>SVM predictor:</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.0 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.1 }}%</h4>
+                                                </div>
+                                                <div class="divCell g-vertical-middle strike-out">
+                                                    <h4> {{ item.svm_proba.2 }}%</h4>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    {% endfor %}
+                        </div>
+                    </div>
+                </div>  
+                <!-- / Card Row -->
+           </div>
+
+    </div>
+{% endblock %}

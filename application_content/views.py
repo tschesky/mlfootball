@@ -1,6 +1,7 @@
 import json
 import urllib
 import operator
+import datetime
 
 from django.contrib import messages
 from django.contrib.auth import logout
@@ -23,7 +24,11 @@ def index(request):
     :return: http response with context rendered on template
     """
     template = loader.get_template('home_page/index.html')
-    query_result = Matches.objects.all()
+    today = datetime.date.today()
+    start_date = today.strftime("%Y-%m-%d")
+    end_date = (today + datetime.timedelta(days=31)).strftime("%Y-%m-%d")
+
+    query_result = Matches.objects.filter(date__range=[start_date, end_date])
     ordered = sorted(query_result, key=operator.attrgetter('date'))
 
     modes = {}
@@ -34,11 +39,42 @@ def index(request):
     print modes
 
     context = {
-        "matches" : ordered,
+        "matches" : ordered[:30],
         "modes" : modes
     }
     return HttpResponse(template.render(context, request))
 
+@login_required
+def results(request):
+    """
+    index.html is returned in response with no context currently
+    :param request: HttpRequest object
+    :return: http response with context rendered on template
+    """
+    template = loader.get_template('results/results.html')
+    today = datetime.date.today()
+    query_result = Matches.objects.exclude(result=None)
+    ordered = sorted(query_result, key=operator.attrgetter('date'))
+
+    ok = {}
+    modes = {}
+    for record in ordered:
+        res_list = [record.cart_res, record.nb_res, record.svm_res]
+        mode = max(set(res_list), key=res_list.count)
+        modes[int(record.match_id)] = mode
+        if mode == record.result:
+            ok[int(record.match_id)] = 1
+        else:
+            ok[int(record.match_id)] = 0
+
+    print ok
+
+    context = {
+        "matches" : ordered[:30],
+        "ok" : ok,
+        "modes": modes
+    }
+    return HttpResponse(template.render(context, request))
 
 @login_required
 def profile(request):
